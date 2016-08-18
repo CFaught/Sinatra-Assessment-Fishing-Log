@@ -3,7 +3,7 @@
 <h2>Logbooks:</h2>
 
 <ul>
-  <% @user.logbooks.all.each do |logbook| %>
+  <% @user.logbooks.each do |logbook| %>
   <li><a href="#"><%= logbook.name %></a></li> <!-- TODO: Add link -->
   <% end %>
 </ul>

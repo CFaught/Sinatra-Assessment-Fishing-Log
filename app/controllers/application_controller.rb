@@ -7,7 +7,6 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  #setup controller here
   get '/' do
    erb :index
   end
@@ -19,7 +18,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      session[:user_id]
+      User.find(session[:user_id])
     end
 
     def login(username, password)
