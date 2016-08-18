@@ -1,0 +1,9 @@
+<h1><%= @user.username %></h1>
+
+<h2>Logbooks:</h2>
+
+<ul>
+  <% @user.logbooks.all.each do |logbook| %>
+  <li><a href="#"><%= logbook.name %></a></li> <!-- TODO: Add link -->
+  <% end %>
+</ul>
