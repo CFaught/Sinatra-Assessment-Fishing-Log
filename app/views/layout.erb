@@ -4,14 +4,15 @@
     <title>Fishing Logbook</title>
   </head>
   <body>
-    <% if !!session[:user] %>
-      Welcome, <%= "#{current_user}" %>!
+    <% if !!session[:user_id] %>
+      Welcome, <%= "#{User.find(current_user).username}" %>!
       <a href="/logout">Sign Out</a><br>
     <% else %>
       Welcome!
       <a href="/signup">Sign up</a>
       <a href="/login">Log In</a><br>
     <% end %>
+    <br></br>
     <%= yield %>
 
   </body>

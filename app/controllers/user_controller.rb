@@ -15,12 +15,16 @@ class UserController < ApplicationController
   end
 
   post '/login' do
-    @user = login(params[:username], params[:password])
-    redirect "/users/#{ @user.id }"
+    login(params[:username], params[:password])
+  end
+
+  get '/logout' do
+    logout!
+    redirect '/login'
   end
 
   get '/users/:id' do
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
     if logged_in?
       erb :'/users/show'
     else
