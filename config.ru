@@ -7,4 +7,5 @@ end
 use Rack::MethodOverride
 use UserController
 use LogbookController
+use LogEntryController
 run ApplicationController
