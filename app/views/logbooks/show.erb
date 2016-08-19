@@ -1,0 +1,7 @@
+<h1><%= @logbook.name %></h1>
+
+<ul>
+  <% @logbook.log_entries.each do |log_entry| %>
+    <li><a href="#"><%= log_entry.date %>, <%= log_entry.location %></a></li>
+  <% end%>
+</ul>
