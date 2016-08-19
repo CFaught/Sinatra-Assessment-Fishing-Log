@@ -10,6 +10,24 @@ class LogbookController < ApplicationController
     end
   end
 
+  get '/logbooks/new' do
+    if logged_in?
+      erb :'/logbooks/create'
+    else
+      redirect '/login'
+    end
+  end
+
+  post '/logbooks' do
+    @logbook = Logbook.new(name: params[:logbook][:name], user_id: current_user.id)
+
+    if @logbook.save
+      redirect "/logbooks/#{@logbook.id}"
+    else
+      redirect "/logbooks/new"
+    end
+  end
+
   get '/logbooks/:id' do
     if logged_in?
       @user = current_user

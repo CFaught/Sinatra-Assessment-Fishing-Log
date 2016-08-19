@@ -4,6 +4,8 @@
 
 <ul>
   <% @user.logbooks.each do |logbook| %>
-  <li><a href="#"><%= logbook.name %></a></li> <!-- TODO: Add link -->
+  <li><a href="/logbooks/<%= logbook.id %>"><%= logbook.name %></a></li> <!-- TODO: Add link -->
   <% end %>
 </ul>
+
+<a href="/logbooks/new">Create New Logbook</a>
