@@ -28,14 +28,31 @@ class LogbookController < ApplicationController
     end
   end
 
+  post '/logbooks/:id' do
+    @logbook = current_user.logbooks.find_by(id: params[:id])
+    if @logbook.update(name: params[:logbook][:name])
+      redirect "/logbooks/#{ @logbook.id }"
+    else
+      redirect "/logbooks"
+    end
+  end
+
   get '/logbooks/:id' do
+    @logbook = current_user.logbooks.find_by(id: params[:id])
     if logged_in?
-      @user = current_user
-      @logbook = Logbook.find_by(id: params[:id])
-      erb :'/logbooks/show' if @user.logbooks.include?(@logbook)
+      if @logbook
+        erb :'/logbooks/show'
+      else
+        redirect '/logbooks'
+      end
     else
       redirect '/login'
     end
+  end
+
+  get '/logbooks/:id/edit' do
+    @logbook = current_user.logbooks.find_by(id: params[:id])
+    erb :'/logbooks/edit'
   end
 
   get '/logbooks/:id/delete' do

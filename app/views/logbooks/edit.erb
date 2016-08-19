@@ -1,0 +1,5 @@
+<form action="/logbooks/<%= @logbook.id %>" method="post">
+  <label>Logbook Title:</label>
+  <input type="text" name="logbook[name]" placeholder="Logbook Title" value="<%= @logbook.name %>"><br></br>
+  <input type="submit" value="Save Changes">
+</form>
