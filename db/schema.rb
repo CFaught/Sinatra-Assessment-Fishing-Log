@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817183637) do
+ActiveRecord::Schema.define(version: 20160819191739) do
 
   create_table "creatures", force: :cascade do |t|
     t.string  "species"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160817183637) do
     t.datetime "date"
     t.string   "moon_phase"
     t.integer  "logbook_id"
+    t.text     "comments"
   end
 
   create_table "logbooks", force: :cascade do |t|
