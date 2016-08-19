@@ -37,4 +37,13 @@ class LogbookController < ApplicationController
       redirect '/login'
     end
   end
+
+  get '/logbooks/:id/delete' do
+    logbook = current_user.logbooks.find_by(id: params[:id])
+    if logbook && logbook.destroy
+      redirect '/logbooks'
+    else
+      redirect "/logbooks/#{ params[:id] }"
+    end
+  end
 end
