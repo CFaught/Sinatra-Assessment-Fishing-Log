@@ -2,8 +2,12 @@ class LogEntryController < ApplicationController
 
 
   get '/log_entry/new' do
-    @logbooks = current_user.logbooks
-    erb :'/log_entries/create'
+    if logged_in?
+      @logbooks = current_user.logbooks
+      erb :'/log_entries/create'
+    else
+      redirect '/login'
+    end
   end
 
   post '/log_entry' do
@@ -11,7 +15,6 @@ class LogEntryController < ApplicationController
     if logged_in?
       log_entry = LogEntry.new(params[:log_entry])
       logbook = current_user.logbooks.find_by(id: params[:logbook][:id])
-
 
       if logbook
         log_entry.logbook_id = logbook.id
@@ -33,5 +36,16 @@ class LogEntryController < ApplicationController
     @logbook = Logbook.find_by(id: @log_entry.logbook_id)
     @fish = @log_entry.creatures
     erb :'/log_entries/show'
+  end
+
+  get '/log_entry/:id/delete' do
+    if logged_in?
+      log_entry = current_user.log_entries.find_by(id: params[:id])
+      logbook = Logbook.find_by(id: log_entry.logbook_id)
+      log_entry.destroy
+      redirect "/logbooks/#{ logbook.id }"
+    else
+      redirect '/login'
+    end
   end
 end
