@@ -1,0 +1,33 @@
+<form action="/log_entry" method="post">
+  <label>Location:</label>
+  <input type="text" name="log_entry[location]" placeholder="28.681876, -93.173610">
+  <br></br>
+
+  <label>Weather:</label>
+  <input type="text" name="log_entry[weather]" placeholder="Cloudy, 92°F">
+  <br></br>
+
+  <label>Date and Time:</label>
+  <input type="datetime-local" name="log_entry[date]">
+  <br></br>
+
+  <label>Moon Phase:</label>
+  <input type="text" name="log_entry[moon_phase]" placeholder="i.e. 'Waning Gibous'">
+  <br></br>
+
+  <label>Comments:</label>
+  <br></br>
+  <textarea name="log_entry[comments]" rows="10" cols="30">
+  </textarea>
+  <br></br>
+
+  <label>Include in Logbooks:</label>
+  <br></br>
+  <% @logbooks.each do |logbook| %>
+    <input type="checkbox" name="logbook[id]" value="<%= logbook.id %>"><%= logbook.name %></input>
+  <% end %>
+
+  <br></br>
+
+  <input type="submit" value="Create Log">
+</form>

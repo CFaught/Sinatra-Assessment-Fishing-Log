@@ -1,6 +1,7 @@
 <h1><%= @logbook.name %></h1>
 <a href="/logbooks/<%= @logbook.id %>/delete">Delete Logbook</a>
-
+<br></br>
+<a href="/log_entry/new">Create New Log Entry</a>
 <ul>
   <% @logbook.log_entries.each do |log_entry| %>
     <li><a href="/log_entry/<%= log_entry.id %>"><%= log_entry.date %>, <%= log_entry.location %></a></li>
