@@ -1,0 +1,35 @@
+<form action="/log_entry/<%= @log_entry.id %>" method="post">
+  <label>Location:</label>
+  <input type="text" name="log_entry[location]" value="<%= @log_entry.location %>">
+  <br></br>
+
+  <label>Weather:</label>
+  <input type="text" name="log_entry[weather]" value="<%= @log_entry.weather %>">
+  <br></br>
+
+  <label>Date:</label>
+  <input type="date" name="date" value="<%= @date %>">
+  <br></br>
+  <label>Time:</label>
+  <input type="time" name="time" value="<%= @time %>">
+  <br></br>
+
+  <label>Moon Phase:</label>
+  <input type="text" name="log_entry[moon_phase]" value="<%= @log_entry.moon_phase %>">
+  <br></br>
+
+  <label>Comments:</label>
+  <br></br>
+  <textarea name="log_entry[comments]" rows="10" cols="30"><%= @log_entry.comments %></textarea>
+  <br></br>
+
+  <label>Include in Logbooks:</label>
+  <br></br>
+  <% @logbooks.each do |logbook| %>
+    <input type="radio" name="logbook[id]" value="<%= logbook.id %>" <%= 'checked' if logbook.log_entries.include?(@log_entry) %>><%= logbook.name %></input>
+  <% end %>
+
+  <br></br>
+
+  <input type="submit" value="Save Changes">
+</form>

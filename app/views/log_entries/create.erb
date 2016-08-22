@@ -7,8 +7,11 @@
   <input type="text" name="log_entry[weather]" placeholder="Cloudy, 92°F">
   <br></br>
 
-  <label>Date and Time:</label>
-  <input type="datetime-local" name="log_entry[date]">
+  <label>Date:</label>
+  <input type="date" name="date">
+  <br></br>
+  <label>Time:</label>
+  <input type="time" name="time">
   <br></br>
 
   <label>Moon Phase:</label>
@@ -24,7 +27,7 @@
   <label>Include in Logbooks:</label>
   <br></br>
   <% @logbooks.each do |logbook| %>
-    <input type="checkbox" name="logbook[id]" value="<%= logbook.id %>"><%= logbook.name %></input>
+    <input type="radio" name="logbook[id]" value="<%= logbook.id %>"><%= logbook.name %></input>
   <% end %>
 
   <br></br>

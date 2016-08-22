@@ -1,5 +1,7 @@
 <a href="/logbooks/<%= @logbook.id %>">Back to Logbook</a>
-<h1><%= @log_entry.date %></h1>
+<h1><%= @log_entry.date.to_date %></h1>
+<h3>Time:</h3>
+<%= @log_entry.date.to_time.strftime("%H:%M:%S, %D %Z") %>
 
 <h3>Location:</h3>
 <%= @log_entry.location %>
@@ -29,5 +31,6 @@
 </ul>
 
 <br></br>
-
+<a href="/log_entry/<%= @log_entry.id %>/edit">Edit Entry</a>
+<br></br>
 <a href="/log_entry/<%= @log_entry.id %>/delete">Delete Entry</a>
