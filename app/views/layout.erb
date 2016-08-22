@@ -2,18 +2,20 @@
 <html>
   <head>
     <title>Fishing Logbook</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
-    <% if !!session[:user_id] %>
-      Welcome, <%= "#{current_user.username}" %>!
-      <a href="/logout">Sign Out</a><br>
-    <% else %>
-      Welcome!
-      <a href="/signup">Sign up</a>
-      <a href="/login">Log In</a><br>
-    <% end %>
-    <br></br>
-    <%= yield %>
-
+    <div class="container">
+      <% if !!session[:user_id] %>
+        Welcome, <%= "#{current_user.username}" %>!
+        <a href="/logout">Sign Out</a><br>
+      <% else %>
+        Welcome!
+        <a href="/signup">Sign up</a>
+        <a href="/login">Log In</a><br>
+      <% end %>
+      <br></br>
+      <%= yield %>
+    </div>
   </body>
 </html>
