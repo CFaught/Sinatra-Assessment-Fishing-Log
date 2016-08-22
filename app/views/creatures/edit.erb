@@ -1,0 +1,26 @@
+<form action="/fish/<%= @creature.id %>" method="post">
+  <label>Species:</label>
+  <input type="text" name="fish[species]" value="<%= @creature.species %>">
+  <br></br>
+
+  <label>Length:</label>
+  <input type="text" name="fish[length]" value="<%= @creature.length %>">
+  <br></br>
+
+  <label>Weight:</label>
+  <input type="text" name="fish[weight]" value="<%= @creature.weight %>">
+  <br></br>
+
+  <label>Gamefish?</label>
+  <input type="radio" name="fish[gamefish]" value="true" <%= 'checked' if @creature.gamefish %>>Yes</input>
+  <input type="radio" name="fish[gamefish]" value="false" <%= 'checked' if !@creature.gamefish %>>No</input>
+  <br></br>
+  <!-- <input type="hidden" name="fish[log_entry_id]" value="<%= @log_entry.id %>"> -->
+
+  <% LogEntry.all.each do |log_entry| %>
+    <input type="radio" name="fish[log_entry_id]" value="<%= log_entry.id %>" <%= 'checked' if @log_entry.id == log_entry.id %>><%= log_entry.date %>, <%= log_entry.location %></input>
+    <br></br>
+  <% end %>
+
+  <input type="submit" value="Save Changes">
+</form>
