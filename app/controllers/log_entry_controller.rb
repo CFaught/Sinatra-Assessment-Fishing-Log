@@ -63,26 +63,46 @@ class LogEntryController < ApplicationController
   end
 
   get '/log_entry/:id' do
-    @log_entry = current_user.log_entries.find_by(id: params[:id])
-    @logbook = Logbook.find_by(id: @log_entry.logbook_id)
-    @fish = @log_entry.creatures
-    erb :'/log_entries/show'
+    if logged_in?
+      @log_entry = current_user.log_entries.find_by(id: params[:id])
+      if @log_entry
+        @logbook = Logbook.find_by(id: @log_entry.logbook_id)
+        @fish = @log_entry.creatures
+        erb :'/log_entries/show'
+      else
+        redirect '/logbooks'
+      end
+    else
+      redirect '/login'
+    end
   end
 
   get '/log_entry/:id/edit' do
-    @log_entry = current_user.log_entries.find_by(id: params[:id])
-    @logbooks = current_user.logbooks
-    @date = @log_entry.date.to_date
-    @time = @log_entry.date.to_time
-    erb :'/log_entries/edit'
+    if logged_in?
+      @log_entry = current_user.log_entries.find_by(id: params[:id])
+      if @log_entry
+        @logbooks = current_user.logbooks
+        @date = @log_entry.date.to_date
+        @time = @log_entry.date.to_time
+        erb :'/log_entries/edit'
+      else
+        redirect '/logbooks'
+      end
+    else
+      redirect '/login'
+    end
   end
 
   get '/log_entry/:id/delete' do
     if logged_in?
       log_entry = current_user.log_entries.find_by(id: params[:id])
-      logbook = Logbook.find_by(id: log_entry.logbook_id)
-      log_entry.destroy
-      redirect "/logbooks/#{ logbook.id }"
+      if log_entry
+        logbook = Logbook.find_by(id: log_entry.logbook_id)
+        log_entry.destroy
+        redirect "/logbooks/#{ logbook.id }"
+      else
+        redirect "/logbooks"
+      end
     else
       redirect '/login'
     end

@@ -26,12 +26,12 @@
 <h3>Fish Caught: </h3>
 <ul>
   <% @fish.each do |fish| %>
-    <li><a href="/fish/<%= fish.id %>"><%= fish.species %>, <%= fish.length %> cm</a></li>
+    <li><a href="/fish/<%= fish.id %>"><%= fish.species %>, <%= fish.length %> in.</a></li>
   <% end %>
 </ul>
 
 <br></br>
-<a href="/fish/new">Add Catch</a>
+<a href="/log_entry/<%= @log_entry.id %>/add_fish">Add Catch</a>
 <br></br>
 <br></br>
 <a href="/log_entry/<%= @log_entry.id %>/edit">Edit Entry</a>

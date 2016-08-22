@@ -5,6 +5,27 @@ class CreatureController < ApplicationController
     erb :'/creatures/new'
   end
 
+  get '/fish' do
+    if logged_in?
+      erb :'/creatures/index'
+    else
+      redirect '/login'
+    end
+  end
+
+  post '/fish' do
+    if logged_in?
+      fish = Creature.new(params[:fish])
+      if fish.save
+        redirect "/fish/#{ fish.id }"
+      else
+        redirect "/log_entry/#{ params[:fish][:log_entry_id] }/add_fish"
+      end
+    else
+      redirect '/login'
+    end
+  end
+
   get '/fish/:id/edit' do
     @creature = Creature.find_by(id: params[:id])
     @log_entry = @creature.log_entry
@@ -25,25 +46,6 @@ class CreatureController < ApplicationController
     else
       redirect '/login'
     end
-  end
-
-  get '/fish' do
-    erb :'/creature/index'
-  end
-
-  post '/fish' do
-    binding.pry
-    if logged_in?
-      fish = Creature.new(params[:fish])
-      if fish.save
-        redirect "/fish/#{ fish.id }"
-      else
-        redirect "/log_entry/#{ params[:fish][:log_entry_id] }/add_fish"
-      end
-    else
-      redirect '/login'
-    end
-
   end
 
   post '/fish/:id' do
