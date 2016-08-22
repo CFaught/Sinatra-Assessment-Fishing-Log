@@ -8,4 +8,5 @@ use Rack::MethodOverride
 use UserController
 use LogbookController
 use LogEntryController
+use CreatureController
 run ApplicationController

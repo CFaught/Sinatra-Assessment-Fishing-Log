@@ -1,0 +1,23 @@
+<h1><%= @creature.species %></h1>
+
+<h3>Length:</h3>
+<%= @creature.length %>
+
+<br></br>
+
+<h3>Weight:</h3>
+<%= @creature.weight %>
+
+<br></br>
+
+
+<a href="/log_entry/<%= @log_entry.id %>"><h3>Log Entry</h3></a>
+
+<% if @creature.gamefish %>
+  <h3>This species is a gamefish</h3>
+<% end %>
+
+<br></br>
+<a href="/creatures/<%= @creature.id %>/edit">Edit</a>
+<br></br>
+<a href="/creatures/<%= @creature.id %>/delete">Delete</a>
