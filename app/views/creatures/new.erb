@@ -1,0 +1,21 @@
+<form action="/fish" method="post">
+  <label>Species:</label>
+  <input type="text" name="fish[species]">
+  <br></br>
+
+  <label>Length:</label>
+  <input type="text" name="fish[length]">
+  <br></br>
+
+  <label>Weight:</label>
+  <input type="text" name="fish[weight]">
+  <br></br>
+
+  <label>Gamefish?</label>
+  <input type="radio" name="fish[gamefish]" value="true">Yes</input>
+  <input type="radio" name="fish[gamefish]" value="false">No</input>
+  <br></br>
+  <input type="hidden" name="fish[log_entry_id]" value="<%= @log_entry.id %>">
+
+  <input type="submit" value="Add Catch">
+</form>
