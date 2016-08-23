@@ -9,7 +9,7 @@ class UserController < ApplicationController
     if user.save
       redirect "/users/#{user.id}"
     else
-      redirect '/signup'
+      erb :error
     end
   end
 
